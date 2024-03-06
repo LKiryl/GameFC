@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -12,6 +13,17 @@ public class PlayerAnimations : MonoBehaviour
     [SerializeField] private Transform _characterSpriteTransform;
     [SerializeField] private Transform _cowboyHatSpriteTransform;
     [SerializeField] private float _cowboyHatTiltModifer = 2f;
+    [SerializeField] private float _yLandVelocityCheck = -10f;
+
+    private Vector2 _velocityBeforePhysicsUpdate;
+    private Rigidbody2D _rigidBody;
+    private CinemachineImpulseSource _impulseSource;
+
+    private void Awake()
+    {
+        _rigidBody = GetComponent<Rigidbody2D>();
+        _impulseSource = GetComponent<CinemachineImpulseSource>();
+    }
 
     private void OnEnable()
     {
@@ -28,6 +40,19 @@ public class PlayerAnimations : MonoBehaviour
         ApplyTilt();
     }
 
+    private void FixedUpdate()
+    {
+        _velocityBeforePhysicsUpdate = _rigidBody.velocity;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(_velocityBeforePhysicsUpdate.y < _yLandVelocityCheck)
+        {
+            PlayPoofDustVFX();
+            _impulseSource.GenerateImpulse();
+        }
+    }
     private void DetectMoveDust()
     {
         if(PlayerController.Instance.CheckGrounded())
