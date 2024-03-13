@@ -276,6 +276,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 8861239676018529270, guid: a770f02cf11a20a4cad540649e334d0c, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6886792
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861239676018529270, guid: a770f02cf11a20a4cad540649e334d0c, type: 3}
+      propertyPath: m_Color.g
+      value: 0.20477696
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861239676018529270, guid: a770f02cf11a20a4cad540649e334d0c, type: 3}
+      propertyPath: m_Color.r
+      value: 0.14618193
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -523,6 +535,18 @@ PrefabInstance:
     - target: {fileID: 1500519282959249038, guid: a770f02cf11a20a4cad540649e334d0c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861239676018529270, guid: a770f02cf11a20a4cad540649e334d0c, type: 3}
+      propertyPath: m_Color.b
+      value: 0.16220188
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861239676018529270, guid: a770f02cf11a20a4cad540649e334d0c, type: 3}
+      propertyPath: m_Color.g
+      value: 0.764151
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861239676018529270, guid: a770f02cf11a20a4cad540649e334d0c, type: 3}
+      propertyPath: m_Color.r
+      value: 0.2944833
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7826,6 +7850,53 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0.08, y: 0.05, z: 0}
+--- !u!1 &1428186412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1428186413}
+  - component: {fileID: 1428186414}
+  m_Layer: 0
+  m_Name: Disco Ball Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1428186413
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428186412}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1771225196}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1428186414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428186412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 821553f80b84309409fad229d42c2a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _discoBallPartyTime: 4
+  _discoGlobalLightIntensity: 0.2
+  _globalLight: {fileID: 619394801}
 --- !u!1 &1461088960
 GameObject:
   m_ObjectHideFlags: 0
@@ -13050,6 +13121,38 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &1771225195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1771225196}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1771225196
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771225195}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 33.80305, y: 0.5801862, z: -0.015263184}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1428186413}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1810510311
 GameObject:
   m_ObjectHideFlags: 0
@@ -18551,6 +18654,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spotlight
       objectReference: {fileID: 0}
+    - target: {fileID: 1375233911818579334, guid: a770f02cf11a20a4cad540649e334d0c, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9672036
+      objectReference: {fileID: 0}
+    - target: {fileID: 1375233911818579334, guid: a770f02cf11a20a4cad540649e334d0c, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9672036
+      objectReference: {fileID: 0}
+    - target: {fileID: 1375233911818579334, guid: a770f02cf11a20a4cad540649e334d0c, type: 3}
+      propertyPath: m_Color.r
+      value: 0.990566
+      objectReference: {fileID: 0}
     - target: {fileID: 1500519282959249038, guid: a770f02cf11a20a4cad540649e334d0c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.817162
@@ -18590,6 +18705,18 @@ PrefabInstance:
     - target: {fileID: 1500519282959249038, guid: a770f02cf11a20a4cad540649e334d0c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861239676018529270, guid: a770f02cf11a20a4cad540649e334d0c, type: 3}
+      propertyPath: m_Color.b
+      value: 0.24448201
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861239676018529270, guid: a770f02cf11a20a4cad540649e334d0c, type: 3}
+      propertyPath: m_Color.g
+      value: 0.24448201
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861239676018529270, guid: a770f02cf11a20a4cad540649e334d0c, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7735849
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18676,3 +18803,4 @@ SceneRoots:
   - {fileID: 608736073}
   - {fileID: 1461088961}
   - {fileID: 741829459}
+  - {fileID: 1771225196}
