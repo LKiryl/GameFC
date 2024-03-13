@@ -13,4 +13,9 @@ MonoBehaviour:
   m_Name: Shoot
   m_EditorClassIdentifier: 
   AudioType: 0
-  AudioClip: {fileID: 0}
+  AudioClip: {fileID: 8300000, guid: 6776ade862d36744bac9345dbb1ec798, type: 3}
+  Loop: 0
+  RandomizePitch: 0
+  RandomPitchRangeModifier: 0.1
+  Volume: 1
+  Pitch: 1
