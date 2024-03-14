@@ -7973,8 +7973,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ffb1d869543c1478e27a602b68ce60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gunShoot: {fileID: 11400000, guid: d3fc5d2bd2b0be74184db21d200f8ec9, type: 2}
-  _jump: {fileID: 11400000, guid: 3bd8ab3ed11e9fc4182b3c47e67383e4, type: 2}
+  _masterVolume: 1
+  _soundCollectionSO: {fileID: 11400000, guid: 4b7b680420844734296d06ca92bec8c0, type: 2}
 --- !u!1 &1481284113
 GameObject:
   m_ObjectHideFlags: 3
