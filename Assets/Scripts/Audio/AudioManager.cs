@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
 
     private AudioSource _currentMusic;
 
+    #region Unity Methods
     private void Start()
     {
         FightMusic();
@@ -34,6 +35,10 @@ public class AudioManager : MonoBehaviour
         DiscoBallManager.OnDiscoBallHitEvent -= DiscoBallMusic;
     }
 
+    #endregion
+
+    #region Sounds Methods
+
     private void PlayRandomSound(SoundSO[] sounds)
     {
         if(sounds != null && sounds.Length > 0)
@@ -50,14 +55,18 @@ public class AudioManager : MonoBehaviour
         float volume = soundSO.Volume * _masterVolume;
         bool loop = soundSO.Loop;
         AudioMixerGroup audioMixerGroup;
+        pitch = RandomizePitch(soundSO, pitch);
+        audioMixerGroup = DetermineAudioMixerGroup(soundSO);
 
-        if(soundSO.RandomizePitch)
-        {
-            float randomPitchModifier =
-                Random.Range(-soundSO.RandomPitchRangeModifier, soundSO.RandomPitchRangeModifier);
-            pitch = soundSO.Pitch + randomPitchModifier;
-        }
+        PlaySound(clip, pitch, volume, loop, audioMixerGroup);
 
+
+
+    }
+
+    private AudioMixerGroup DetermineAudioMixerGroup(SoundSO soundSO)
+    {
+        AudioMixerGroup audioMixerGroup;
         switch (soundSO.AudioType)
         {
             case SoundSO.AudioTypes.SFX:
@@ -70,11 +79,22 @@ public class AudioManager : MonoBehaviour
                 audioMixerGroup = null;
                 break;
         }
-        PlaySound(clip, pitch, volume, loop, audioMixerGroup);
 
-        
-
+        return audioMixerGroup;
     }
+
+    private static float RandomizePitch(SoundSO soundSO, float pitch)
+    {
+        if (soundSO.RandomizePitch)
+        {
+            float randomPitchModifier =
+                Random.Range(-soundSO.RandomPitchRangeModifier, soundSO.RandomPitchRangeModifier);
+            pitch = soundSO.Pitch + randomPitchModifier;
+        }
+
+        return pitch;
+    }
+
     private void PlaySound(AudioClip clip, float pitch, float volume, bool loop, AudioMixerGroup audioMixerGroup)
     {
         GameObject soundObject = new GameObject("Temp audio Source");
@@ -88,9 +108,14 @@ public class AudioManager : MonoBehaviour
 
         if (!loop) { Destroy(soundObject, clip.length); }
 
-        if(audioMixerGroup == _musicMixerGroup)
+        DetermineMusic(audioMixerGroup, audioSource);
+    }
+
+    private void DetermineMusic(AudioMixerGroup audioMixerGroup, AudioSource audioSource)
+    {
+        if (audioMixerGroup == _musicMixerGroup)
         {
-            if(_currentMusic != null)
+            if (_currentMusic != null)
             {
                 _currentMusic.Stop();
             }
@@ -99,6 +124,9 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region SFX
     private void Gun_OnShoot()
     {
         PlayRandomSound(_soundCollectionSO.GunShoot);
@@ -114,6 +142,9 @@ public class AudioManager : MonoBehaviour
         PlayRandomSound(_soundCollectionSO.Splat);
     }
 
+    #endregion
+
+    #region Music
     private void FightMusic()
     {
         PlayRandomSound(_soundCollectionSO.FightMusic);
@@ -123,6 +154,8 @@ public class AudioManager : MonoBehaviour
     {
         PlayRandomSound(_soundCollectionSO.DiscoMusic);
         float soundLengh = _soundCollectionSO.DiscoMusic[0].AudioClip.length;
-        Invoke("FightMusic", soundLengh);
+        Utils.RunAfterDelay(this, soundLengh, FightMusic);
     }
+
+    #endregion
 }
