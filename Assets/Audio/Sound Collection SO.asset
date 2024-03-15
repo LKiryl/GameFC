@@ -16,4 +16,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d3fc5d2bd2b0be74184db21d200f8ec9, type: 2}
   Jump:
   - {fileID: 11400000, guid: 3bd8ab3ed11e9fc4182b3c47e67383e4, type: 2}
-  Splat: []
+  Splat:
+  - {fileID: 11400000, guid: e5130a124bc79a641857bab229bd3197, type: 2}
+  - {fileID: 11400000, guid: e93fd277b760a70438f4ea3a0a8b4d19, type: 2}

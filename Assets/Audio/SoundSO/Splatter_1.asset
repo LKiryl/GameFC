@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Splatter_1
   m_EditorClassIdentifier: 
   AudioType: 0
-  AudioClip: {fileID: 0}
+  AudioClip: {fileID: 8300000, guid: 596643cff30fe2c4f84e53c2927b18f3, type: 3}
   Loop: 0
   RandomizePitch: 0
   RandomPitchRangeModifier: 0.1

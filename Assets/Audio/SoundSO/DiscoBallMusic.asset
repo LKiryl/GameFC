@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bcd8b5d79c2d19940afe3170d502b37b, type: 3}
-  m_Name: Splatter_2
+  m_Name: DiscoBallMusic
   m_EditorClassIdentifier: 
-  AudioType: 0
-  AudioClip: {fileID: 8300000, guid: daa4c5654aae5af448b952355fe7342c, type: 3}
+  AudioType: 1
+  AudioClip: {fileID: 8300000, guid: 56c8c8fe204461b4896d33a3f3a1c406, type: 3}
   Loop: 0
-  RandomizePitch: 1
+  RandomizePitch: 0
   RandomPitchRangeModifier: 0.1
-  Volume: 1.338
+  Volume: 1
   Pitch: 1

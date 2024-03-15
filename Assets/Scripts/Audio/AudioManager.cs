@@ -1,17 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
+    [Range(0f, 2f)]
     [SerializeField] private float _masterVolume = 1f;
     [SerializeField] private SoundCollectionSO _soundCollectionSO;
 
+    [SerializeField] private AudioMixerGroup _sfxMixerGroup;
+    [SerializeField] private AudioMixerGroup _musicMixerGroup;
+
+    private AudioSource _currentMusic;
+
+    private void Start()
+    {
+        FightMusic();
+    }
     private void OnEnable()
     {
         Gun.OnShoot += Gun_OnShoot;
         PlayerController.OnJump += PlayerController_OnJump;
         Health.OnDeath += Health_OnDeath;
+        DiscoBallManager.OnDiscoBallHitEvent += DiscoBallMusic;
     }
 
     private void OnDisable()
@@ -19,6 +31,7 @@ public class AudioManager : MonoBehaviour
         Gun.OnShoot -= Gun_OnShoot;
         PlayerController.OnJump -= PlayerController_OnJump;
         Health.OnDeath -= Health_OnDeath;
+        DiscoBallManager.OnDiscoBallHitEvent -= DiscoBallMusic;
     }
 
     private void PlayRandomSound(SoundSO[] sounds)
@@ -36,6 +49,7 @@ public class AudioManager : MonoBehaviour
         float pitch = soundSO.Pitch;
         float volume = soundSO.Volume * _masterVolume;
         bool loop = soundSO.Loop;
+        AudioMixerGroup audioMixerGroup;
 
         if(soundSO.RandomizePitch)
         {
@@ -44,12 +58,24 @@ public class AudioManager : MonoBehaviour
             pitch = soundSO.Pitch + randomPitchModifier;
         }
 
-        PlaySound(clip, pitch, volume, loop);
+        switch (soundSO.AudioType)
+        {
+            case SoundSO.AudioTypes.SFX:
+                audioMixerGroup = _sfxMixerGroup;
+                break;
+            case SoundSO.AudioTypes.Music:
+                audioMixerGroup = _musicMixerGroup;
+                break;
+            default:
+                audioMixerGroup = null;
+                break;
+        }
+        PlaySound(clip, pitch, volume, loop, audioMixerGroup);
 
         
 
     }
-    private void PlaySound(AudioClip clip, float pitch, float volume, bool loop)
+    private void PlaySound(AudioClip clip, float pitch, float volume, bool loop, AudioMixerGroup audioMixerGroup)
     {
         GameObject soundObject = new GameObject("Temp audio Source");
         AudioSource audioSource = soundObject.AddComponent<AudioSource>();
@@ -57,9 +83,20 @@ public class AudioManager : MonoBehaviour
         audioSource.pitch = pitch;
         audioSource.volume = volume;
         audioSource.loop = loop;
+        audioSource.outputAudioMixerGroup = audioMixerGroup;
         audioSource.Play();
 
         if (!loop) { Destroy(soundObject, clip.length); }
+
+        if(audioMixerGroup == _musicMixerGroup)
+        {
+            if(_currentMusic != null)
+            {
+                _currentMusic.Stop();
+            }
+
+            _currentMusic = audioSource;
+        }
     }
 
     private void Gun_OnShoot()
@@ -75,5 +112,17 @@ public class AudioManager : MonoBehaviour
     private void Health_OnDeath(Health health)
     {
         PlayRandomSound(_soundCollectionSO.Splat);
+    }
+
+    private void FightMusic()
+    {
+        PlayRandomSound(_soundCollectionSO.FightMusic);
+    }
+
+    private void DiscoBallMusic()
+    {
+        PlayRandomSound(_soundCollectionSO.DiscoMusic);
+        float soundLengh = _soundCollectionSO.DiscoMusic[0].AudioClip.length;
+        Invoke("FightMusic", soundLengh);
     }
 }
