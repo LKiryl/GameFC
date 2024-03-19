@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -6,9 +7,11 @@ public class PlayerController : MonoBehaviour
     public Vector2 MoveInput => _frameInput.Move;
 
     public static Action OnJump;
+    public static Action OnJetpack;
 
     public static PlayerController Instance;
 
+    [SerializeField] private TrailRenderer _jetpackTrailRenderer;
     [SerializeField] private Transform _feetTransform;
     [SerializeField] private Vector2 _groundCheck;
     [SerializeField] private LayerMask _groundLayer;
@@ -16,9 +19,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _extraGravity = 700f;
     [SerializeField] private float _gravityDelay = .2f;
     [SerializeField] private float _coyoteTime = .5f;
+    [SerializeField] private float _jetpackTime = .6f;
+    [SerializeField] private float _jetpackStrength = 11f;
 
     private float _timeInAir, _coyoteTimer;
     private bool _doubleJumpAvailable;
+    private Coroutine _jetpackCoroutine;
 
     private PlayerInput _playerInput;
     private FrameInput _frameInput;
@@ -36,11 +42,13 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         OnJump += ApplyJumpForce;
+        OnJetpack += StartJetpack;
     }
 
     private void OnDisable()
     {
         OnJump -= ApplyJumpForce;
+        OnJetpack -= StartJetpack;
     }
 
     private void Update()
@@ -51,6 +59,7 @@ public class PlayerController : MonoBehaviour
         HandleJump();
         HandleSpriteFlip();
         GravityDelay();
+        JetPack();
     }
 
     
@@ -167,4 +176,32 @@ public class PlayerController : MonoBehaviour
             transform.eulerAngles = new Vector3(0f, 0f, 0f);
         }
     } 
+
+    private void JetPack()
+    {
+        if(!_frameInput.Jetpack || _jetpackCoroutine != null) { return; }
+
+        OnJetpack?.Invoke();
+    }
+
+    private void StartJetpack()
+    {
+        _jetpackTrailRenderer.emitting = true;
+        _jetpackCoroutine = StartCoroutine(JetpackRoutine());
+    }
+
+    private IEnumerator JetpackRoutine()
+    {
+        float jetTime = 0f;
+
+        while(jetTime < _jetpackTime)
+        {
+            jetTime += Time.deltaTime;
+            _rigidBody.velocity = Vector2.up * _jetpackStrength;
+            yield return null;
+        }
+
+        _jetpackTrailRenderer.emitting = false;
+        _jetpackCoroutine = null;
+    }
 }
