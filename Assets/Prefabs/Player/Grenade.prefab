@@ -50,10 +50,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0dc15b3c00f7a40b5b7b9b5d05b02f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _explodeVFX: {fileID: 8581555329403240612, guid: a9540c0540fb59047959ac59b261f92a, type: 3}
+  _grenadeLight: {fileID: 8339373480907587546}
   _launchForce: 15
   _torqueAmount: 0.2
-  _explodeVFX: {fileID: 8581555329403240612, guid: a9540c0540fb59047959ac59b261f92a, type: 3}
+  _explosionRadius: 3
+  _enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
   _damageAmount: 3
+  _lightBlinkTime: 0.15
+  _totalBlinks: 3
+  _explodeTime: 3
 --- !u!212 &1576118922910794680
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -94,8 +102,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -637556527
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 486864cc06a222d4faa15a13a742ffb4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -233,8 +241,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3311211204291381613}
   m_Enabled: 1
-  m_SortingLayerID: -637556527
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1 &8339373480907587546

@@ -19187,9 +19187,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1798933406917042708, guid: 0d64b30c2f7eb114ebc7b8386238bbcd, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5841967564406013811, guid: 0d64b30c2f7eb114ebc7b8386238bbcd, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6917474411122021371, guid: 0d64b30c2f7eb114ebc7b8386238bbcd, type: 3}
       propertyPath: m_Name
       value: Pipe
+      objectReference: {fileID: 0}
+    - target: {fileID: 6917474411122021371, guid: 0d64b30c2f7eb114ebc7b8386238bbcd, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

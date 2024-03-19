@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4728175521416207626}
   - component: {fileID: 5968084354001695933}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6988388480769509755}
   - component: {fileID: 404174429436588596}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Outline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 722285979208899143}
   - component: {fileID: 2832387929957637719}
   - component: {fileID: -7383195412533648876}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 392f736f90af0bb4e90d372014cc9b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 2656737952503587502, guid: e3f71263d06868243b821d516bc766e0, type: 3}
+  _enemyPrefab: {fileID: 119505717454123510, guid: 7d8098e0b5eb9fe46b1e93ec4ad78bf2, type: 3}
   _spawnTimer: 3
 --- !u!61 &2832387929957637719
 BoxCollider2D:
