@@ -1,32 +1,69 @@
+using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Grenade : MonoBehaviour
 {
-    [SerializeField] private GameObject _grenadeVFX;
-    [SerializeField] private float _moveSpeed = 5f;
+    public Action OnExplode;
+
+    [SerializeField] private float _launchForce = 15f;
+    [SerializeField] private float _torqueAmount = 2f;
+    [SerializeField] private GameObject _explodeVFX;
     [SerializeField] private float _damageAmount = 3f;
 
     private Rigidbody2D _rigidbody;
-    private Vector2 _throwDirection;
-    private Gun _gun;
+    private CinemachineImpulseSource _impulseSource;
+   
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
-    private void FixedUpdate()
+    private void OnEnable()
     {
-        _rigidbody.AddTorque(_moveSpeed);
+        OnExplode += Explosion;
+        OnExplode += GrenadeScreenShake;
     }
 
-    public void Init(Gun gun, Vector2 grenadeSpawnPos, Vector2 mousePos)
+    private void OnDisable()
     {
-        _gun = gun;
-        transform.position = grenadeSpawnPos;
-        _throwDirection = (mousePos - grenadeSpawnPos).normalized;
+        OnExplode -= Explosion;
+        OnExplode -= GrenadeScreenShake;
+    }
 
+    private void Start()
+    {
+        LaunchGrenade();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.GetComponent<Enemy>()) 
+        {
+            OnExplode?.Invoke();
+        }
+    }
+
+    private void LaunchGrenade()
+    {
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 directionToMouse = (mousePos - (Vector2)transform.position).normalized;
+        _rigidbody.AddForce(directionToMouse * _launchForce, ForceMode2D.Impulse);
+        _rigidbody.AddTorque(_torqueAmount, ForceMode2D.Impulse);
+    }
+
+    private void Explosion()
+    {
+        Instantiate(_explodeVFX, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
+
+    private void GrenadeScreenShake()
+    {
+        _impulseSource.GenerateImpulse();
     }
 }

@@ -50,8 +50,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0dc15b3c00f7a40b5b7b9b5d05b02f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _grenadeVFX: {fileID: 0}
-  _moveSpeed: 5
+  _launchForce: 15
+  _torqueAmount: 0.2
+  _explodeVFX: {fileID: 8581555329403240612, guid: a9540c0540fb59047959ac59b261f92a, type: 3}
   _damageAmount: 3
 --- !u!212 &1576118922910794680
 SpriteRenderer:
