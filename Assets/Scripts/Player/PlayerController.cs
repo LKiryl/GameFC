@@ -69,6 +69,12 @@ public class PlayerController : MonoBehaviour
         ExtraGravity();
     }
 
+    private void OnDestroy()
+    {
+        Fade fade = FindFirstObjectByType<Fade>();
+        fade.FadeInAndOut();
+    }
+
 
     public bool IsFacingRight()
     {
