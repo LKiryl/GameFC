@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
-{
-    public Action OnMoveTrue;
-    public Action OnMoveFalse;
+{   
+    public bool CanMove => _canMove;
 
     [SerializeField] private float _moveSpeed = 10f;
 
