@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
     private void OnDestroy()
     {
         Fade fade = FindFirstObjectByType<Fade>();
-        fade.FadeInAndOut();
+        fade?.FadeInAndOut();
     }
 
 
