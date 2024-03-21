@@ -880,7 +880,7 @@ MonoBehaviour:
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
   m_UpdateMethod: 0
-  m_BlendUpdateMethod: 1
+  m_BlendUpdateMethod: 0
   m_DefaultBlend:
     m_Style: 5
     m_Time: 2
@@ -7757,9 +7757,9 @@ MonoBehaviour:
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 0.8
-  m_SoftZoneHeight: 0.8
+  m_SoftZoneHeight: 0.28
   m_BiasX: 0
-  m_BiasY: 0
+  m_BiasY: -0.218
   m_CenterOnActivate: 1
   m_GroupFramingMode: 2
   m_AdjustmentMode: 0
@@ -8522,6 +8522,10 @@ PrefabInstance:
     - target: {fileID: 5326318407831852012, guid: d925d2d590ead3c4aa514c28c2bccc24, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9203817606533553645, guid: d925d2d590ead3c4aa514c28c2bccc24, type: 3}
+      propertyPath: _maxFallSpeedVelocity
+      value: -25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
